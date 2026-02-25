@@ -1,0 +1,10 @@
+{
+  "name": "privacy",
+  "description": "Manage Privacy.com virtual cards and transactions.",
+  "config": {
+    "api_key": {
+      "description": "Privacy.com API key, used to authenticate all requests.",
+      "required": true
+    }
+  }
+}

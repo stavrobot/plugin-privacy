@@ -1,0 +1,35 @@
+{
+  "name": "list_transactions",
+  "description": "List transactions from Privacy.com, with optional filters.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "account_token": {
+      "type": "string",
+      "description": "Filter transactions by account UUID."
+    },
+    "card_token": {
+      "type": "string",
+      "description": "Filter transactions by card UUID."
+    },
+    "result": {
+      "type": "string",
+      "description": "Filter by transaction result: APPROVED or DECLINED."
+    },
+    "begin": {
+      "type": "string",
+      "description": "Include transactions on or after this date (YYYY-MM-DD, inclusive)."
+    },
+    "end": {
+      "type": "string",
+      "description": "Include transactions before this date (YYYY-MM-DD, exclusive)."
+    },
+    "page_size": {
+      "type": "integer",
+      "description": "Number of transactions per page (1–1000, default 50)."
+    },
+    "page": {
+      "type": "integer",
+      "description": "Page number to retrieve (1 or greater, default 1)."
+    }
+  }
+}
