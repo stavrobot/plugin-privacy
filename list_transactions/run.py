@@ -31,6 +31,23 @@ KNOWN_PARAMS = {
 }
 
 
+def strip_transaction(transaction: dict) -> dict:
+    merchant = transaction["merchant"]
+    return {
+        "token": transaction["token"],
+        "card_token": transaction["card_token"],
+        "amount": transaction["amount"],
+        "merchant_amount": transaction["merchant_amount"],
+        "merchant_currency": transaction["merchant_currency"],
+        "created": transaction["created"],
+        "result": transaction["result"],
+        "status": transaction["status"],
+        "merchant_name": merchant["descriptor"],
+        "merchant_city": merchant["city"],
+        "merchant_country": merchant["country"],
+    }
+
+
 def main() -> None:
     params = json.load(sys.stdin)
 
@@ -55,7 +72,16 @@ def main() -> None:
         print(f"{response.status_code} {response.text}", file=sys.stderr)
         sys.exit(1)
 
-    sys.stdout.write(response.text)
+    data = response.json()
+
+    output = {
+        "total_entries": data["total_entries"],
+        "total_pages": data["total_pages"],
+        "page": data["page"],
+        "data": [strip_transaction(t) for t in data.get("data", [])],
+    }
+
+    json.dump(output, sys.stdout)
 
 
 main()
