@@ -1,6 +1,6 @@
 {
   "name": "privacy",
-  "description": "Manage Privacy.com virtual cards and transactions.",
+  "description": "List your Privacy.com card transactions.",
   "summary": "List Privacy.com card transactions",
   "config": {
     "api_key": {
